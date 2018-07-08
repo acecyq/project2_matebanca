@@ -31,6 +31,14 @@ class Layout extends React.Component {
                   <a href="/users/logout">Log Out</a>
                 </li>
               </ul>
+              <ul>
+                <li>
+                  <a href="/qns/upload">Upload Question</a>
+                </li>
+                <li>
+                  <a href="/qns/practice">Practice</a>
+                </li>
+              </ul>
             </nav>
           </div>
           {this.props.children}

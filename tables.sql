@@ -10,12 +10,10 @@ CREATE TABLE IF NOT EXISTS users (
 -- create questions table
 CREATE TABLE IF NOT EXISTS questions (
   id SERIAL PRIMARY KEY,
-  content varchar(8000),
   img varchar(255),
   level varchar(255),
-  subject varchar(255),
+  topic varchar(255),
   difficulty varchar(255),
-  author_id integer,
   user_id integer
 );
 

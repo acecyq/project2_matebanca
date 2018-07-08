@@ -21,11 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // use files in public folder
 app.use(express.static(__dirname + '/public'));
 
-// run 'npm install cookie-parser'
+// require and use install cookie-parser'
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
-
-
 
 // require db
 const db = require('./db');
@@ -33,22 +31,6 @@ const db = require('./db');
 // require routes
 require('./routes')(app, db);
 
-
-
-// app.post('/animals', function(request, response) {
-
-//   //debug code (output request body)
-//   console.log(request.body);
-
-
-//   // save the request body
-//   jsonfile.writeFile('data.json', request.body, (err) => {
-//     console.error(err)
-
-//     // now look inside your json file
-//     response.send(request.body);
-//   });
-// });
 
 
 app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));

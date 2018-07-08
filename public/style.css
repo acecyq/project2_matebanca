@@ -5,3 +5,12 @@ body {
 	font: 16px/1.5 arial, sans-serif;
 	color: white;
 }
+
+.uploadform-image {
+	width: 30;
+	height: 15;
+}
+
+.hide {
+	visibility: hidden;
+}

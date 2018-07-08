@@ -16,5 +16,6 @@ poolObj.on('error', (err) => {
 
 module.exports = {
 	pool: poolObj,
-	user: require('./models/users.js')(poolObj)
+	user: require('./models/users.js')(poolObj),
+	qns: require('./models/qns.js')(poolObj)
 };

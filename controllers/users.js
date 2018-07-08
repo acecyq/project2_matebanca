@@ -46,7 +46,6 @@ module.exports = (db) => {
 
 					} else {
 
-						console.log(result1.rows[0]);
 						res.cookie('user_id', result1.rows[0].id);
 						res.cookie('session', sha256(result1.rows[0].id + 'login' + salt));
 						res.cookie('log_in', 'pass');
