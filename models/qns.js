@@ -10,9 +10,19 @@ module.exports = (pool) => {
 
 	}
 
+
+	const getQns = (level, topic, difficulty, callback) => {
+
+		let queryString = 'SELECT * FROM questions WHERE level = $1 AND topic = $2 AND difficulty = $3';
+		let values = [level, topic, difficulty];
+		pool.query(queryString, values, callback);
+
+	}
+
 	return {
 
-		uploading: uploading
+		uploading: uploading,
+		getQns: getQns
 
 	};
 

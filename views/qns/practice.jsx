@@ -1,7 +1,7 @@
 var React = require("react");
 var Layout = require("../layout.jsx");
 
-class UploadForm extends React.Component {
+class Practice extends React.Component {
   render() {
     return (
 
@@ -31,21 +31,31 @@ class UploadForm extends React.Component {
           </select>
         </div>
         <div className="container">
-        <form  
-          id='practiceForm'
-          method='GET'
-        >
-          <input type='submit' value='Get Question' />
-        </form>
+          <form  
+            id='practiceForm'
+            className='hide'
+          >
+            <input type='submit' value='Search' />
+          </form>
         </div>
         <div className="container">
           <img id="practiceform-image" />
         </div>
-        <script src="/getList.js" />
+        <div className="container">
+          <form  
+            id='updateForm'
+            encType="multipart/form-data"
+            className='hide'
+          >
+            <input type="file" name="update" accept="image/*" />
+            <input type="submit" value="Update" />
+          </form>
+        </div>
+        <script src="/getQuestion.js" />
       </Layout>
       
     );
   }
 }
 
-module.exports = UploadForm;
+module.exports = Practice;

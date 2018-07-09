@@ -38,8 +38,10 @@ module.exports = (app, db) => {
 
 	app.get('/qns/upload', qns.uploadForm);
 	app.get('/qns/select', qns.selectList);
-	// app.get('/qns/practice', qns.practice);
+	app.get('/qns/practice', qns.practice);
+	app.get('/qns/getqns', qns.getQns);
 	
 	app.post('/qns/uploaded', upload.single('question'), qns.uploading);
+	// app.post('/qns/updated', upload.single('question'), qns.updated);
 
 }

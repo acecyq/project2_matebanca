@@ -51,23 +51,6 @@ module.exports = (db) => {
 	// upload question
 	const uploading = (req, res) => {
 
-		// let img;
-		// let id = req.cookies['user_id'];
-		// console.log(req.body);
-
-		// const submit = cloudinary.uploader.upload(req.file.path, (result) => {
-
-		// 	console.log("the result is: " + result);
-		// 	img = result;
-
-		// }, {
-
-		//     crop: 'scale',
-		//     width: 720,
-		//     height: 360
-
-		// })
-
 		cloudinary.uploader.upload(req.file.path, {width: 720, height: 360, crop: "scale"})
 		.then(result => {
 
@@ -278,12 +261,66 @@ module.exports = (db) => {
 	}
 
 
+	// get question data from sql database
+	const getQns = (req, res) => {
+
+		if (checkCookies(req.cookies) === null) {
+
+			res.render('./qns/pleaseLogin');
+
+		} else {
+
+			db.qns.getQns(req.query.level, req.query.topic, req.query.difficulty, (error, result) => {
+
+				if (error) {
+
+					console.log("db error: " + error);
+
+				} else {
+
+					res.send(result.rows);
+
+				}
+
+			});
+
+		}
+
+	}
+
+
+	// update question
+	// const updated = (req, res) => {
+
+	// 	cloudinary.uploader.upload(req.file.path, {width: 720, height: 360, crop: "scale"})
+	// 	.then(result => {
+
+	// 		db.qns.uploading(result.public_id, req.body.level, req.body.topic, req.body.difficulty, req.cookies['user_id'])
+
+	// 	})
+	// 	.then((error1, result1) => {
+
+	// 		console.log(result1);
+	// 		res.redirect('/qns/upload');
+
+	// 	})
+	// 	.catch(error => {
+
+	// 		res.send("uploading error: " + error);
+
+	// 	});
+
+	// }
+
+
 	return {
 
 		uploadForm: uploadForm,
 		uploading: uploading,
 		selectList: selectList,
-		practice: practice
+		practice: practice,
+		getQns: getQns,
+		// updated: updated
 
 	}
 

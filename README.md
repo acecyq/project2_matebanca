@@ -11,3 +11,6 @@
 
 8. user selects level, topic and difficulty
 9. question of selection displays
+
+10. checks if question belongs to user
+11. user gets to upload another image to replace the existing image
