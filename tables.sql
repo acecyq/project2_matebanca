@@ -26,10 +26,10 @@ CREATE TABLE IF NOT EXISTS answers (
 );
 
 -- create comments table
-CREATE TABLE IF NOT EXISTS comments (
-  id SERIAL PRIMARY KEY,
-  content varchar(8000),
-  user_id integer,
-  question_id integer,
-  solution_id integer
-);
+-- CREATE TABLE IF NOT EXISTS comments (
+--   id SERIAL PRIMARY KEY,
+--   content varchar(8000),
+--   user_id integer,
+--   question_id integer,
+--   solution_id integer
+-- );
