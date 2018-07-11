@@ -108,6 +108,7 @@ module.exports = (db) => {
 	// user log out
 	const logout = (req, res) => {
 
+		res.clearCookie("login");
 		res.clearCookie("session");
 		res.clearCookie("user_id");
 		res.redirect('/users/login');

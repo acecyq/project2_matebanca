@@ -44,14 +44,15 @@ module.exports = (pool) => {
 	// get question and solution from database
 	const getQns = async function(level, topic, difficulty) {
 
-		// let queryString = 'SELECT * FROM questions WHERE level = $1 AND topic = $2 AND difficulty = $3';
-		let queryString = 'SELECT * FROM questions WHERE id = 18';
+		let queryString = 'SELECT * FROM questions WHERE level = $1 AND topic = $2 AND difficulty = $3';
+		// let queryString = 'SELECT * FROM questions WHERE id = 18';
 		let values = [level, topic, difficulty];
 		let queryString1 = 'SELECT * FROM answers WHERE question_id = $1';
 
 		try {
-			// const result = await pool.query(queryString, values);
-			const result = await pool.query(queryString);
+
+			const result = await pool.query(queryString, values);
+			// const result = await pool.query(queryString);
 			const question = result.rows[Math.floor(Math.random() * result.rows.length)]
 			let value = [question.id];
 			const result1 = await pool.query(queryString1, value);
@@ -59,19 +60,33 @@ module.exports = (pool) => {
 				"question" : question,
 				"solution" : result1.rows[0]
 			}
+
 		} catch(error) {
+
 			console.log("ERR: " + error);
+			return "nothing";
+
 		}
 
 	}
 
 
 	// delete question from database
-	const deleted = (img, callback) => {
+	const deletedQ = (img) => {
 
 		let queryString = 'DELETE FROM questions WHERE img = $1 RETURNING *';
-		let value = [img];
-		pool.query(queryString, value, callback);
+		let values = [img];
+		pool.query(queryString, values);
+
+	}
+
+
+	// delete question from database
+	const deletedS = (img) => {
+
+		let queryString = 'DELETE FROM answers WHERE img = $1 RETURNING *';
+		let values = [img];
+		pool.query(queryString, values);
 
 	}
 
@@ -81,7 +96,8 @@ module.exports = (pool) => {
 		uploadQ: uploadQ,
 		uploadS: uploadS,
 		getQns: getQns,
-		deleted: deleted
+		deletedQ: deletedQ,
+		deletedS: deletedS
 
 	};
 

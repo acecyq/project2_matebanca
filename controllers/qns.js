@@ -296,39 +296,55 @@ module.exports = (db) => {
 
 
 	// delete question
-	const deleted = (req, res) => {
+	const deleted = async function(req, res) {
 
-		// remove image from cloud server
-		cloudinary.v2.uploader.destroy(req.query.img, (error, result) => {
+		
 
-			if (error) {
+		try {
+			
+			await cloudinary.v2.uploader.destroy(req.query.qns);
+			await cloudinary.v2.uploader.destroy(req.query.sol);
+			await db.qns.deletedQ(req.query.qns);
+			await db.qns.deletedS(req.query.sol);
+			res.send("ok");
 
-				res.send(error);
+		} catch(error) {
 
-			} else {
+			res.send(error);
 
-				// remove image from database
-				console.log(result);
+		}
 
-			}
+		// // remove image from cloud server
+		// cloudinary.v2.uploader.destroy(req.query.qns, (error, result) => {
 
-		});
+		// 	if (error) {
 
-		// delete question from database
-		db.qns.deleted(req.query.img, (error1, result1) => {
+		// 		res.send(error);
 
-			if (error1) {
+		// 	} else {
 
-				res.send(error1);
+		// 		// remove image from database
+		// 		console.log(result);
 
-			} else {
+		// 	}
 
-				console.log(result1.rows[0]);
-				res.send('/qns/practice');
+		// });
 
-			}
+		// // delete question from database
+		// db.qns.deleted(req.query.img, (error1, result1) => {
 
-		});
+		// 	if (error1) {
+
+		// 		res.send(error1);
+
+		// 	} else {
+
+		// 		console.log(result1.rows[0]);
+		// 		res.send('/qns/practice');
+
+		// 	}
+
+		// });
 
 	}
 

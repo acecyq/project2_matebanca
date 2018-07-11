@@ -7,9 +7,10 @@ class UploadForm extends React.Component {
     return (
 
       <Layout>
-        <div className="container">
+        <h4>Upload Question and Solution</h4>
+        <div className="form-group container">
           <p></p>
-          <select name="level" form="uploadForm" required>
+          <select className="custom-select" name="level" form="uploadForm" required>
             <option value="">Select Level</option>
             <option value="s1">Secondary 1</option>
             <option value="s2">Secondary 2</option>
@@ -19,36 +20,52 @@ class UploadForm extends React.Component {
             <option value="s4a">Secondary 4 A Math</option>
           </select>
         </div>
-        <div className="container">
-          <select name="topic" form="uploadForm" required>
+        <div className="form-group container">
+          <select className="custom-select" name="topic" form="uploadForm" required>
             <option value="">Select topic</option>
           </select>
         </div>
-        <div className="container">
-          <select name="difficulty" form="uploadForm" required>
+        <div className="form-group container">
+          <select className="custom-select" name="difficulty" form="uploadForm" required>
             <option value="">Select difficulty</option>
             <option value="b">Basic</option>
             <option value="i">Intermediate</option>
             <option value="a">Advanced</option>
           </select>
         </div>
-        <div className="container">
+        <div className="form-group container">
           <form  
         	  id='uploadForm'
-  	      action='/qns/uploaded' 
-  	      method='POST'
-  	      encType="multipart/form-data"
-          className="hide"
+    	      action='/qns/uploaded' 
+    	      method='POST'
+    	      encType="multipart/form-data"
+            className="hide"
   	      >
-            <div className="container">
-              Question: <input id="question" type="file" name="question" accept="image/*" />
-              <img id="uploadform-question" />
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <span className="input-group-text">Question</span>
+              </div>
+              <div className="custom-file">
+                <input className="custom-file-input" id="question" type="file" name="question" accept="image/*" />
+                <label className="custom-file-label" htmlFor="question">Choose image file</label>
+              </div>
             </div>
             <div className="container">
-              Solution: <input id="solution" type="file" name="question" accept="image/*" />
-              <img id="uploadform-solution" />
+              <img id="questionImg" className="mx-auto d-block img-fluid upload-img"></img>
             </div>
-            <input type="submit" value="Upload" />
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <span className="input-group-text">Solution</span>
+              </div>
+              <div className="custom-file">
+                <input className="custom-file-input" id="solution" type="file" name="question" accept="image/*" />
+                <label className="custom-file-label" htmlFor="solution">Choose image file</label>
+              </div>
+            </div>
+            <div className="container">
+              <img id="solutionImg" className="mx-auto d-block img-fluid upload-img"></img>
+            </div>
+            <button className="btn btn-outline-light btn-block" name="submit" type="submit">UPLOAD</button>
   	      </form>
         </div>
         <script src="/uploadForm.js" />

@@ -12,8 +12,8 @@ window.onload = () => {
 	let cookieId = document.cookie.charAt(document.cookie.indexOf('user_id') + 8);
 	let del = document.getElementsByClassName('delete')[0];
 	let input0 = document.getElementsByTagName('input')[0];
-	let input1 = document.getElementsByTagName('input')[1];
-	let selected;
+	let deleteBtn = document.getElementById('delete');
+	let delqnsurl, delsolurl;
 
 
 	// when level is selected, topics for that level will appear as options
@@ -75,23 +75,40 @@ window.onload = () => {
 		event.preventDefault();
 
 		function responseHandler() {
-			let res = JSON.parse(this.responseText);
+
+			let res;
 			let msg = document.getElementsByTagName('p')[0]
-			if (this.responseText === undefined) {
-				
+			let h6 = document.getElementsByTagName('h6');
+
+			if (this.responseText === "nothing") {
+
 				msg.textContent = "No results";
 				question.src="";
+				solution.src="";
+				for (let i = 0; i < h6.length; i++) {
+					h6[i].style.visibility = "hidden";
+				}
 
 			} else {
 
+				res = JSON.parse(this.responseText);
 				msg.textContent = "";
 				question.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_700,h_350,c_scale/" + res.question.img;
 				solution.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_700,h_350,c_scale/" + res.solution.img;
+				delqnsurl = res.question.img;
+				delsolurl = res.solution.img;
+				console.log('delqnsurl');
+				console.log(delqnsurl);
+				console.log('delsolurl');
+				console.log(delsolurl);
+				for (let i = 0; i < h6.length; i++) {
+					h6[i].style.visibility = "visible";
+				}
 				
 			}
 
 			// if question is made by user, delete button will show to allow the user to delete the image
-			if (this.responseText !== undefined && res.question.user_id === parseInt(cookieId, 10)) {
+			if (this.responseText !== "nothing" && res.question.user_id === parseInt(cookieId, 10)) {
 
 				del.style.visibility = 'visible';
 
@@ -114,39 +131,44 @@ window.onload = () => {
 
 
 	// display image used to update before confirming to update
-	input0.addEventListener('change', () => {
+	// input0.addEventListener('change', () => {
 
-		let img = document.getElementsByTagName('img')[1]
-		let file = input0.files[0];
-		let reader = new FileReader();
-		reader.onload = () => {
-			readResult = reader.result;
-			console.log(reader.result);
-			img.src = reader.result;
-			img.height = "350";
-			img.width = "700";
-		};
-		if (file) {
-			reader.readAsDataURL(file);	
-		} else {
-			img.src = "";
-			img.height = "0";
-			img.width = "0";
-		}
+	// 	let img = document.getElementsByTagName('img')[1]
+	// 	let file = input0.files[0];
+	// 	let reader = new FileReader();
+	// 	reader.onload = () => {
+	// 		readResult = reader.result;
+	// 		console.log(reader.result);
+	// 		img.src = reader.result;
+	// 		img.height = "350";
+	// 		img.width = "700";
+	// 	};
+	// 	if (file) {
+	// 		reader.readAsDataURL(file);	
+	// 	} else {
+	// 		img.src = "";
+	// 		img.height = "0";
+	// 		img.width = "0";
+	// 	}
 
-	});
+	// });
 
 
-	input1.addEventListener('click', (event) => {
+	deleteBtn.addEventListener('click', () => {
 
 		function responseHandler1() {
 
-			alert("question deleted!");
-			window.location = '/qns/practice';
-
+			if (this.responseText === "ok") {
+	
+				alert("question deleted!");
+				window.location = '/qns/practice';
+	
+			}
+			
 		}
 
-		let url = "/qns/deleted?img=" + selected.img;
+		let url = "/qns/deleted?qns=" + delqnsurl + "&sol=" + delsolurl;
+		console.log(url);
 		let request = new XMLHttpRequest();
 
 		request.addEventListener("load", responseHandler1);

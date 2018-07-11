@@ -13,21 +13,25 @@ class LoginForm extends React.Component {
           action="/users/loggedin"
         >
           <p></p>
-          <div className="form-input">
-            Email:<input
+          <div className="form-group">
+            <input
+              className="form-control"
               name="email"
-              type="text"
+              type="email"
               placeholder="Email"
+              required
             />
           </div>
-          <div className="form-input">
-            Password:<input
+          <div className="form-group">
+            <input
+              className="form-control"
               name="password"
               type="password"
               placeholder="Password"
+              required
             />
           </div>
-          <input name="submit" type="submit" value="Log in" />
+          <input className="btn btn-outline-light btn-block" name="submit" type="submit" value="Log in" />
         </form>
         <script src="/check.js"></script>
       </Layout>

@@ -6,8 +6,9 @@ class Practice extends React.Component {
     return (
 
       <Layout>
-        <div className="container">
-          <select name="level" form="practiceForm">
+        <h4>Practice</h4>
+        <div className="form-group container">
+          <select className="custom-select" name="level" form="practiceForm">
             <option value="">Select Level</option>
             <option value="s1">Secondary 1</option>
             <option value="s2">Secondary 2</option>
@@ -17,38 +18,40 @@ class Practice extends React.Component {
             <option value="s4a">Secondary 4 A Math</option>
           </select>
         </div>
-        <div className="container">
-          <select name="topic" form="practiceForm">
+        <div className="form-group container">
+          <select className="custom-select" name="topic" form="practiceForm">
             <option value="">Select topic</option>
           </select>
         </div>
-        <div className="container">
-          <select name="difficulty" form="practiceForm">
+        <div className="form-group container">
+          <select className="custom-select" name="difficulty" form="practiceForm">
             <option value="">Select difficulty</option>
             <option value="b">Basic</option>
             <option value="i">Intermediate</option>
             <option value="a">Advanced</option>
           </select>
         </div>
-        <div className="container">
+        <div className="form-group container">
           <form  
             id='practiceForm'
             className='hide'
           >
-            <input type='submit' value='Search' />
+            <button className="btn btn-outline-light btn-block" name="submit" type="submit">SEARCH</button>
           </form>
         </div>
         <div className="container">
           <p></p>
         </div>
         <div className="container">
-          <img id="practiceform-image0" />
+          <h6 className="hide">Question</h6>
+          <img id="practiceform-image0" className="mx-auto d-block img-fluid" />
         </div>
         <div className="container">
-          <img id="practiceform-image1" />
+          <h6 className="hide">Solution</h6>
+          <img id="practiceform-image1" className="mx-auto d-block img-fluid" />
         </div>
         <div className="container delete hide">
-          <input type="submit" value="Delete" />
+          <button id="delete" className="btn btn-outline-light btn-block" name="submit" type="submit">DELETE</button>
         </div>
         <script src="/practice.js" />
       </Layout>

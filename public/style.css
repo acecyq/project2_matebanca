@@ -1,32 +1,44 @@
+/*
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+LAYOUT
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
 body {
-	background-color: white;
 	margin: 0;
 	padding: 0;
+	background-color: #9d74b0;
 	font-family: 'Permanent Marker', cursive;
-	color: black;
+	color: white;
 }
 
 header {
-	background-color: #910002;
-	padding: 5%;
-	text-align: center;
+	background-color: #7a5c8d;
+	padding: 0 10vh;
 }
 
 header h1 {
 	font-family: 'Monoton', cursive;
-	color: white;
+	font-size: 10vw;
+	color: #d6a7df;
 	line-height: 2;
+	text-align: center;
 }
 
 li {
 	list-style-type: none;
 	display: inline-block;
-	padding: 0 20px;
+	padding: 0 6vw;
 }
 
 a {
+	font-size: 2vw;
 	text-decoration: none;
-	color: black;
+	color: #baabc9;
 }
 
 a:hover {
@@ -34,15 +46,77 @@ a:hover {
 	color: white;
 }
 
-.container {
-	
+
+
+/*
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+REGISTRATION FORM
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
+h4 {
+	font-size: 5vw;
+	line-height: 4;
+	text-align: center;
 }
 
-.uploadform-image {
-	width: 30;
-	height: 15;
+.user-form {
+	color: white;
 }
+
+
+
+/*
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+UPLOAD FORM
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
+.upload-img {
+	padding-bottom: 1vh;
+}
+
+
+
+/*
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+PRACTICE
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++
+*/
+
+h6 {
+	text-align: center;
+	font-size: 3vw;
+}
+
+#practiceform-image1 {
+	line-height: 2;
+}
+
+#delete {
+	margin-top: 2vh;
+}
+
+
+
+
+
 
 .hide {
 	visibility: hidden;
 }
+
+
+
