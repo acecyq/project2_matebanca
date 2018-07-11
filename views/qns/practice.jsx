@@ -39,19 +39,18 @@ class Practice extends React.Component {
           </form>
         </div>
         <div className="container">
-          <img id="practiceform-image" />
+          <p></p>
         </div>
         <div className="container">
-          <form  
-            id='updateForm'
-            encType="multipart/form-data"
-            className='hide'
-          >
-            <input type="file" name="update" accept="image/*" />
-            <input type="submit" value="Update" />
-          </form>
+          <img id="practiceform-image0" />
         </div>
-        <script src="/getQuestion.js" />
+        <div className="container">
+          <img id="practiceform-image1" />
+        </div>
+        <div className="container delete hide">
+          <input type="submit" value="Delete" />
+        </div>
+        <script src="/practice.js" />
       </Layout>
       
     );

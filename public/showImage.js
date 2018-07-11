@@ -5,7 +5,6 @@ window.onload = () => {
 
 	// display image for preview
 	const showImage = () => {
-		console.log('ok');
 		let img = document.getElementsByTagName('img')[0]
 		let file = input0.files[0];
 		let reader = new FileReader();

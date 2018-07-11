@@ -18,6 +18,7 @@ class RegisterForm extends React.Component {
               name="name"
               type="text"
               placeholder="Name"
+              required
             />
           </div>
           <div className="form-input">
@@ -25,6 +26,7 @@ class RegisterForm extends React.Component {
               name="email"
               type="text"
               placeholder="Email"
+              required
             />
           </div>
           <div className="form-input">
@@ -32,6 +34,7 @@ class RegisterForm extends React.Component {
               name="password"
               type="password"
               placeholder="Password"
+              required
             />
           </div>
           <input name="submit" type="submit" />

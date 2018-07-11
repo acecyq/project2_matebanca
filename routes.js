@@ -4,6 +4,7 @@ module.exports = (app, db) => {
 	const users = require('./controllers/users.js')(db);
 	const qns = require('./controllers/qns.js')(db);
 
+
 	// require multer
 	const multer  = require('multer');
 	const upload = multer({ dest: 'uploads/' });
@@ -41,7 +42,9 @@ module.exports = (app, db) => {
 	app.get('/qns/practice', qns.practice);
 	app.get('/qns/getqns', qns.getQns);
 	
-	app.post('/qns/uploaded', upload.single('question'), qns.uploading);
-	// app.post('/qns/updated', upload.single('question'), qns.updated);
+	app.post('/qns/uploaded', upload.array('question', 2), qns.uploading);
+	
+	app.delete('/qns/deleted', qns.deleted);
+	// app.post('/qns/updated', qns.updated);
 
 }

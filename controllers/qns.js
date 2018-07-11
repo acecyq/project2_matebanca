@@ -3,13 +3,14 @@ module.exports = (db) => {
 
 	// require cloudinary
 	let cloudinary = require('cloudinary');
-
+	
 	// set configs api_key and api_secret
 	cloudinary.config({ 
 	  cloud_name: 'dzn61n5gq', 
 	  api_key: '151698649535996', 
 	  api_secret: 'gLBP1I3PCXx4_jWUiPDSunS5IHY' 
 	});
+
 
 	// require hash
 	const sha256 = require('js-sha256');
@@ -49,25 +50,31 @@ module.exports = (db) => {
 
 
 	// upload question
-	const uploading = (req, res) => {
+	const uploading = async function(req, res) {
 
-		cloudinary.uploader.upload(req.file.path, {width: 720, height: 360, crop: "scale"})
-		.then(result => {
+		if (req.files.length < 2) {
 
-			db.qns.uploading(result.public_id, req.body.level, req.body.topic, req.body.difficulty, req.cookies['user_id'])
-
-		})
-		.then((error1, result1) => {
-
-			console.log(result1);
+			res.cookie('upload', 'fail');
 			res.redirect('/qns/upload');
 
-		})
-		.catch(error => {
+		} else {
 
-			res.send("uploading error: " + error);
+			try {
 
-		});
+				const result = await cloudinary.v2.uploader.upload(req.files[0].path, {width: 720, height: 360, crop: "scale"});
+				const result1 = await db.qns.uploadQ(result.public_id, req.body.level, req.body.topic, req.body.difficulty, req.cookies['user_id']);
+				const result2 = await cloudinary.v2.uploader.upload(req.files[1].path, {width: 720, height: 360, crop: "scale"});
+				const result3 = await db.qns.uploadS(result2.public_id, req.cookies['user_id'], result1.rows[0].id);
+				res.redirect('/qns/practice');
+
+			} catch(err) {
+
+				console.log('ERR: ', err);
+				error.push(err);
+
+			}
+
+		}
 
 	}
 
@@ -261,8 +268,8 @@ module.exports = (db) => {
 	}
 
 
-	// get question data from sql database
-	const getQns = (req, res) => {
+	// get question and solution data from sql database
+	const getQns = async function(req, res) {
 
 		if (checkCookies(req.cookies) === null) {
 
@@ -270,47 +277,60 @@ module.exports = (db) => {
 
 		} else {
 
-			db.qns.getQns(req.query.level, req.query.topic, req.query.difficulty, (error, result) => {
+			try {
 
-				if (error) {
+				const result = await db.qns.getQns(req.query.level, req.query.topic, req.query.difficulty);
+				res.send(result);	
 
-					console.log("db error: " + error);
+			} catch(error) {
 
-				} else {
-
-					res.send(result.rows);
-
-				}
-
-			});
+				console.log("ERR: " + error);
+				res.send(error);
+				
+			}
+			
 
 		}
 
 	}
 
 
-	// update question
-	// const updated = (req, res) => {
+	// delete question
+	const deleted = (req, res) => {
 
-	// 	cloudinary.uploader.upload(req.file.path, {width: 720, height: 360, crop: "scale"})
-	// 	.then(result => {
+		// remove image from cloud server
+		cloudinary.v2.uploader.destroy(req.query.img, (error, result) => {
 
-	// 		db.qns.uploading(result.public_id, req.body.level, req.body.topic, req.body.difficulty, req.cookies['user_id'])
+			if (error) {
 
-	// 	})
-	// 	.then((error1, result1) => {
+				res.send(error);
 
-	// 		console.log(result1);
-	// 		res.redirect('/qns/upload');
+			} else {
 
-	// 	})
-	// 	.catch(error => {
+				// remove image from database
+				console.log(result);
 
-	// 		res.send("uploading error: " + error);
+			}
 
-	// 	});
+		});
 
-	// }
+		// delete question from database
+		db.qns.deleted(req.query.img, (error1, result1) => {
+
+			if (error1) {
+
+				res.send(error1);
+
+			} else {
+
+				console.log(result1.rows[0]);
+				res.send('/qns/practice');
+
+			}
+
+		});
+
+	}
 
 
 	return {
@@ -320,7 +340,7 @@ module.exports = (db) => {
 		selectList: selectList,
 		practice: practice,
 		getQns: getQns,
-		// updated: updated
+		deleted: deleted
 
 	}
 

@@ -3,11 +3,13 @@ var Layout = require("../layout.jsx");
 
 class UploadForm extends React.Component {
   render() {
+
     return (
 
       <Layout>
         <div className="container">
-          <select name="level" form="uploadForm">
+          <p></p>
+          <select name="level" form="uploadForm" required>
             <option value="">Select Level</option>
             <option value="s1">Secondary 1</option>
             <option value="s2">Secondary 2</option>
@@ -18,12 +20,12 @@ class UploadForm extends React.Component {
           </select>
         </div>
         <div className="container">
-          <select name="topic" form="uploadForm">
+          <select name="topic" form="uploadForm" required>
             <option value="">Select topic</option>
           </select>
         </div>
         <div className="container">
-          <select name="difficulty" form="uploadForm">
+          <select name="difficulty" form="uploadForm" required>
             <option value="">Select difficulty</option>
             <option value="b">Basic</option>
             <option value="i">Intermediate</option>
@@ -38,12 +40,18 @@ class UploadForm extends React.Component {
   	      encType="multipart/form-data"
           className="hide"
   	      >
-            <input type="file" name="question" accept="image/*" />
-            <input type='submit' value='Upload' />
+            <div className="container">
+              Question: <input id="question" type="file" name="question" accept="image/*" />
+              <img id="uploadform-question" />
+            </div>
+            <div className="container">
+              Solution: <input id="solution" type="file" name="question" accept="image/*" />
+              <img id="uploadform-solution" />
+            </div>
+            <input type="submit" value="Upload" />
   	      </form>
-          <img id="uploadform-image" />
         </div>
-        <script src="/getList.js" />
+        <script src="/uploadForm.js" />
       </Layout>
       
     );

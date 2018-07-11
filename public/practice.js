@@ -7,9 +7,13 @@ window.onload = () => {
 	let selects = document.getElementsByTagName('select');
 	let practiceForm = document.getElementById('practiceForm');
 	let searchBtn = document.getElementsByTagName('input')[0];
-	let question = document.getElementById('practiceform-image');
-	let updateForm = document.getElementById('updateForm');
+	let question = document.getElementById('practiceform-image0');
+	let solution = document.getElementById('practiceform-image1');
 	let cookieId = document.cookie.charAt(document.cookie.indexOf('user_id') + 8);
+	let del = document.getElementsByClassName('delete')[0];
+	let input0 = document.getElementsByTagName('input')[0];
+	let input1 = document.getElementsByTagName('input')[1];
+	let selected;
 
 
 	// when level is selected, topics for that level will appear as options
@@ -71,16 +75,32 @@ window.onload = () => {
 		event.preventDefault();
 
 		function responseHandler() {
-			let qns = JSON.parse(this.responseText);
-			let selected = qns[Math.floor(Math.random() * qns.length)];
-			question.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_720,h_360,c_scale/" + selected.img;
+			let res = JSON.parse(this.responseText);
+			let msg = document.getElementsByTagName('p')[0]
+			if (this.responseText === undefined) {
+				
+				msg.textContent = "No results";
+				question.src="";
 
-			// if question is made by user, user is able to update the question
-			if (selected.user_id === parseInt(cookieId, 10)) {
-				updateForm.style.visibility = 'visible';
 			} else {
-				updateForm.style.visibility = 'hidden';
+
+				msg.textContent = "";
+				question.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_700,h_350,c_scale/" + res.question.img;
+				solution.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_700,h_350,c_scale/" + res.solution.img;
+				
 			}
+
+			// if question is made by user, delete button will show to allow the user to delete the image
+			if (this.responseText !== undefined && res.question.user_id === parseInt(cookieId, 10)) {
+
+				del.style.visibility = 'visible';
+
+			} else {
+
+				del.style.visibility = 'hidden';
+
+			}
+			
 		}
 
 		let url = "/qns/getqns?level=" + select0.value + "&topic=" + select1.value + "&difficulty=" + select2.value;
@@ -90,24 +110,47 @@ window.onload = () => {
 		request.open("GET", url);
 		request.send();
 
-	})
+	});
 
 
-	updateForm.addEventListener('submit', (event) => {
+	// display image used to update before confirming to update
+	input0.addEventListener('change', () => {
 
-		event.preventDefault();
+		let img = document.getElementsByTagName('img')[1]
+		let file = input0.files[0];
+		let reader = new FileReader();
+		reader.onload = () => {
+			readResult = reader.result;
+			console.log(reader.result);
+			img.src = reader.result;
+			img.height = "350";
+			img.width = "700";
+		};
+		if (file) {
+			reader.readAsDataURL(file);	
+		} else {
+			img.src = "";
+			img.height = "0";
+			img.width = "0";
+		}
 
-		function responseHandler() {
+	});
 
-			console.log(this);
+
+	input1.addEventListener('click', (event) => {
+
+		function responseHandler1() {
+
+			alert("question deleted!");
+			window.location = '/qns/practice';
 
 		}
 
-		let url = "/qns/updated";
+		let url = "/qns/deleted?img=" + selected.img;
 		let request = new XMLHttpRequest();
 
-		request.add("load", responseHandler);
-		request.open("POST", url);
+		request.addEventListener("load", responseHandler1);
+		request.open("DELETE", url);
 		request.send();
 
 	});

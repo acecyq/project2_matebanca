@@ -20,7 +20,6 @@ CREATE TABLE IF NOT EXISTS questions (
 -- create answers table
 CREATE TABLE IF NOT EXISTS answers (
   id SERIAL PRIMARY KEY,
-  content varchar(8000),
   img varchar(255),
   user_id integer,
   question_id integer
