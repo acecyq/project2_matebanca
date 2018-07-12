@@ -4,7 +4,7 @@ module.exports = (db) => {
 	// render the home page
 	const home = (req, res) => {
 
-		res.render('./users/home');
+		res.render('./users/home', {name: req.cookies['name']});
 
 	}
 
@@ -49,6 +49,7 @@ module.exports = (db) => {
 						res.cookie('user_id', result1.rows[0].id);
 						res.cookie('session', sha256(result1.rows[0].id + 'login' + salt));
 						res.cookie('log_in', 'pass');
+						res.cookie('name', result1.rows[0].name);
 						res.redirect('/');
 
 					}
@@ -88,6 +89,7 @@ module.exports = (db) => {
 					res.cookie('user_id', result.rows[0].id);
 					res.cookie('session', sha256(result.rows[0].id + 'login' + salt));
 					res.cookie('login', 'pass');
+					res.cookie('name', result.rows[0].name);
 					res.redirect('/');
 
 				} else {
@@ -111,6 +113,7 @@ module.exports = (db) => {
 		res.clearCookie("login");
 		res.clearCookie("session");
 		res.clearCookie("user_id");
+		res.clearCookie("name");
 		res.redirect('/users/login');
 
 	}

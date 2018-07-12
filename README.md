@@ -1,14 +1,13 @@
 # project2_matebanca
 
-1. home page
-2. user register
-3. user log in
-4. user log out
-5. user selects question image and solution image to upload
-6. image displays on page for user to preview
-7. user can choose to upload or to reselect file
-file uploads to cloudinary
-8. user selects level, topic and difficulty
-9. question of selection displays
+1. create home, registration, login pages and logout route.
+2. user selects question image and solution image to upload.
+3. if only 1 image is selected, user is redirected back to same page with error message.
+4. all select fields are required during upload.
+5. images displays on page for user to preview.
+6. user can upload or reselect files
+7. files upload to cloudinary and data is inserted into database.
+8. when in practice, user selects level, topic and difficulty to display question and solution.
+9. if question does not exist, display error message.
 10. checks if question belongs to user
-11. user gets to delete image if image belongs to user
+11. user is able to delete image if image belongs to user

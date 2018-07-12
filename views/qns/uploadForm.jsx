@@ -41,29 +41,33 @@ class UploadForm extends React.Component {
     	      encType="multipart/form-data"
             className="hide"
   	      >
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">Question</span>
+            <div className="photo">
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Question</span>
+                </div>
+                <div className="custom-file">
+                  <input className="custom-file-input" id="question" type="file" name="question" accept="image/*" />
+                  <label className="custom-file-label" htmlFor="question">Choose image file</label>
+                </div>
               </div>
-              <div className="custom-file">
-                <input className="custom-file-input" id="question" type="file" name="question" accept="image/*" />
-                <label className="custom-file-label" htmlFor="question">Choose image file</label>
-              </div>
-            </div>
-            <div className="container">
-              <img id="questionImg" className="mx-auto d-block img-fluid upload-img"></img>
-            </div>
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">Solution</span>
-              </div>
-              <div className="custom-file">
-                <input className="custom-file-input" id="solution" type="file" name="question" accept="image/*" />
-                <label className="custom-file-label" htmlFor="solution">Choose image file</label>
+              <div className="container">
+                <img id="questionImg" className="mx-auto d-block img-fluid upload-img"></img>
               </div>
             </div>
-            <div className="container">
-              <img id="solutionImg" className="mx-auto d-block img-fluid upload-img"></img>
+            <div className="photo">
+              <div className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Solution</span>
+                </div>
+                <div className="custom-file">
+                  <input className="custom-file-input" id="solution" type="file" name="question" accept="image/*" />
+                  <label className="custom-file-label" htmlFor="solution">Choose image file</label>
+                </div>
+              </div>
+              <div className="container">
+                <img id="solutionImg" className="mx-auto d-block img-fluid upload-img"></img>
+              </div>
             </div>
             <button className="btn btn-outline-light btn-block" name="submit" type="submit">UPLOAD</button>
   	      </form>
