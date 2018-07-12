@@ -42,12 +42,21 @@ class Practice extends React.Component {
         <div className="container">
           <p></p>
         </div>
+<<<<<<< HEAD
         <h6 className="hide">Question</h6>
         <div className="photo">
           <img id="practiceform-image0" className="mx-auto d-block img-fluid" />
         </div>
         <h6 className="hide">Solution</h6>
         <div className="photo">
+=======
+        <div className="photo">
+          <h6 className="hide">Question</h6>
+          <img id="practiceform-image0" className="mx-auto d-block img-fluid" />
+        </div>
+        <div className="photo">
+          <h6 className="hide">Solution</h6>
+>>>>>>> master
           <img id="practiceform-image1" className="mx-auto d-block img-fluid" />
         </div>
         <div className="container delete hide">

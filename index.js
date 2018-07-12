@@ -34,4 +34,8 @@ require('./routes')(app, db);
 
 // process.env.PORT || 3000;
 // app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port ' + PORT + ' ~~~'));
+<<<<<<< HEAD
 app.listen(3000, () => console.log('tuning to port 3000'));
+=======
+app.listen(3000, () => console.log('listening on port 3000'));
+>>>>>>> master

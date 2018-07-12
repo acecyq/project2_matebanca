@@ -7,7 +7,13 @@ class Home extends React.Component {
 
       <Layout>
         <div className="container">
+<<<<<<< HEAD
           <h4>Welcome</h4>
+=======
+          <h4>Welcome {this.props.name}</h4>
+          <p className="intro">We are a database of Mathematics questions which serves to help tutors and parents to feed their students/children all the practice they will need to ace their examinations.</p>
+        <p className="intro">Tip: If at first you don't succeed, Dust yourself off and try again</p>
+>>>>>>> master
         </div>
       </Layout>
 
