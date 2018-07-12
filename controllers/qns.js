@@ -61,10 +61,18 @@ module.exports = (db) => {
 
 			try {
 
-				const result = await cloudinary.v2.uploader.upload(req.files[0].path, {width: 720, height: 360, crop: "scale"});
+				const result = await cloudinary.v2.uploader.upload(req.files[0].path, {width: 1080, height: 830, crop: "scale"});
+				console.log('result');
+				console.log(result);
 				const result1 = await db.qns.uploadQ(result.public_id, req.body.level, req.body.topic, req.body.difficulty, req.cookies['user_id']);
-				const result2 = await cloudinary.v2.uploader.upload(req.files[1].path, {width: 720, height: 360, crop: "scale"});
+				console.log('result1.rows[0]');
+				console.log(result1.rows[0]);
+				const result2 = await cloudinary.v2.uploader.upload(req.files[1].path, {width: 1080, height: 830, crop: "scale"});
+				console.log('result2');
+				console.log(result2);
 				const result3 = await db.qns.uploadS(result2.public_id, req.cookies['user_id'], result1.rows[0].id);
+				console.log('result3.rows[0]');
+				console.log(result3.rows[0]);
 				res.redirect('/qns/practice');
 
 			} catch(err) {

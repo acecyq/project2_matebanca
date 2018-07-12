@@ -32,7 +32,7 @@ header h1 {
 li {
 	list-style-type: none;
 	display: inline-block;
-	padding: 0 6vw;
+	padding: 0 4vw;
 }
 
 a {
@@ -59,7 +59,7 @@ REGISTRATION FORM
 */
 
 h4 {
-	font-size: 5vw;
+	font-size: 4vw;
 	line-height: 4;
 	text-align: center;
 }
@@ -84,6 +84,10 @@ UPLOAD FORM
 	padding-bottom: 1vh;
 }
 
+.photo {
+	margin: 10vh 5vw;
+}
+
 
 
 /*
@@ -98,7 +102,7 @@ PRACTICE
 
 h6 {
 	text-align: center;
-	font-size: 3vw;
+	font-size: 2vw;
 }
 
 #practiceform-image1 {

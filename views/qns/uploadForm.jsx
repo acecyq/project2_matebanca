@@ -50,7 +50,7 @@ class UploadForm extends React.Component {
                 <label className="custom-file-label" htmlFor="question">Choose image file</label>
               </div>
             </div>
-            <div className="container">
+            <div className="photo">
               <img id="questionImg" className="mx-auto d-block img-fluid upload-img"></img>
             </div>
             <div className="input-group mb-3">
@@ -62,7 +62,7 @@ class UploadForm extends React.Component {
                 <label className="custom-file-label" htmlFor="solution">Choose image file</label>
               </div>
             </div>
-            <div className="container">
+            <div className="photo">
               <img id="solutionImg" className="mx-auto d-block img-fluid upload-img"></img>
             </div>
             <button className="btn btn-outline-light btn-block" name="submit" type="submit">UPLOAD</button>
