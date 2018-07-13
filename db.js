@@ -72,7 +72,7 @@ if( process.env.DATABASE_URL ){
 const pool = new pg.Pool(configs);
 
 module.exports = {
-	pool: poolObj,
+	pool: pool,
 	user: require('./models/users.js')(poolObj),
 	qns: require('./models/qns.js')(poolObj)
 };
