@@ -73,6 +73,6 @@ const pool = new pg.Pool(configs);
 
 module.exports = {
 	pool: pool,
-	user: require('./models/users.js')(poolObj),
-	qns: require('./models/qns.js')(poolObj)
+	user: require('./models/users.js')(pool),
+	qns: require('./models/qns.js')(pool)
 };
