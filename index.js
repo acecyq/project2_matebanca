@@ -32,6 +32,6 @@ const db = require('./db');
 require('./routes')(app, db);
 
 
-// process.env.PORT || 3000;
-// app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port ' + PORT + ' ~~~'));
-app.listen(3000, () => console.log('listening on port 3000'));
+process.env.PORT || 3000;
+app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port ' + PORT + ' ~~~'));
+// app.listen(3000, () => console.log('listening on port 3000'));

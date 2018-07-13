@@ -22,11 +22,7 @@ const pg = require('pg');
 // 	console.log('idle client error', err.message, err.stack);
 // });
 
-// module.exports = {
-//   pool: poolObj,
-//   user: require('./models/users.js')(poolObj),
-//   qns: require('./models/qns.js')(poolObj)
-// };
+
 
 
 
@@ -75,5 +71,8 @@ if( process.env.DATABASE_URL ){
 //this is the same
 const pool = new pg.Pool(configs);
 
-const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT, () => console.log('~~~ Tuning in to the waves of port '+PORT+' ~~~'));
+module.exports = {
+	pool: poolObj,
+	user: require('./models/users.js')(poolObj),
+	qns: require('./models/qns.js')(poolObj)
+};
