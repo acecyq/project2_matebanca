@@ -72,23 +72,27 @@ window.onload = () => {
 	}
 
 
-	// display question image for preview
-	const showImage0 = () => {
-		let img = document.getElementsByTagName('img')[0];
-		let file = input0.files[0];
+	const fileRead = (img, file) => {
 		let reader = new FileReader();
 		reader.onload = () => {
 			img.src = reader.result;
-			img.height = "350";
-			img.width = "700";
+			img.height = "550";
+			img.width = "720";
 		};
 		if (file) {
 			reader.readAsDataURL(file);	
 		} else {
 			img.src = "";
-			img.height = "0";
-			img.width = "0";
+			img.height = "550";
+			img.width = "720";
 		}
+	}
+
+	// display question image for preview
+	const showImage0 = () => {
+		let img = document.getElementsByTagName('img')[0];
+		let file = input0.files[0];
+		fileRead(img, file);
 	}
 
 
@@ -96,19 +100,7 @@ window.onload = () => {
 	const showImage1 = () => {
 		let img = document.getElementsByTagName('img')[1];
 		let file = input1.files[0];
-		let reader = new FileReader();
-		reader.onload = () => {
-			img.src = reader.result;
-			img.height = "350";
-			img.width = "700";
-		};
-		if (file) {
-			reader.readAsDataURL(file);	
-		} else {
-			img.src = "";
-			img.height = "0";
-			img.width = "0";
-		}
+		fileRead(img, file);
 	}
 
 	// preview image before uploading

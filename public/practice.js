@@ -93,8 +93,8 @@ window.onload = () => {
 
 				res = JSON.parse(this.responseText);
 				msg.textContent = "";
-				question.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_700,h_350,c_scale/" + res.question.img;
-				solution.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_700,h_350,c_scale/" + res.solution.img;
+				question.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_1080,h_830,c_scale/" + res.question.img;
+				solution.src = "https://res.cloudinary.com/dzn61n5gq/image/upload/w_1080,h_830,c_scale/" + res.solution.img;
 				delqnsurl = res.question.img;
 				delsolurl = res.solution.img;
 				console.log('delqnsurl');
@@ -128,30 +128,6 @@ window.onload = () => {
 		request.send();
 
 	});
-
-
-	// display image used to update before confirming to update
-	// input0.addEventListener('change', () => {
-
-	// 	let img = document.getElementsByTagName('img')[1]
-	// 	let file = input0.files[0];
-	// 	let reader = new FileReader();
-	// 	reader.onload = () => {
-	// 		readResult = reader.result;
-	// 		console.log(reader.result);
-	// 		img.src = reader.result;
-	// 		img.height = "350";
-	// 		img.width = "700";
-	// 	};
-	// 	if (file) {
-	// 		reader.readAsDataURL(file);	
-	// 	} else {
-	// 		img.src = "";
-	// 		img.height = "0";
-	// 		img.width = "0";
-	// 	}
-
-	// });
 
 
 	deleteBtn.addEventListener('click', () => {
